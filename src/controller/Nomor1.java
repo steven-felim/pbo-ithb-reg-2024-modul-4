@@ -1,14 +1,14 @@
 package controller;
 
 import model.classes.User;
-import view.DataView;
+import view.View1;
 
 import java.util.List;
 
 public class Nomor1 {
 
     public static void printUserData(String nama, List<User> users) {
-        DataView view = new DataView();
+        View1 view = new View1();
         boolean found = false;
         for (User user : users) {
             if (user.getNama().equalsIgnoreCase(nama)) {

@@ -2,10 +2,15 @@ package view;
 
 import model.classes.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataView {
+    public void displayNomor1(String user) {
+        JOptionPane.showMessageDialog(null, user, "Data", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void displayMataKuliah(String semester, ArrayList<MataKuliah> mataKuliah) {
         System.out.println("Daftar Mata Kuliah " + semester + ":");
         for (MataKuliah m : mataKuliah) {
