@@ -205,6 +205,4 @@ public class Dummy {
         dh.add(0, new DosenHonor("Dion", "Jalan TKI II No. 3A", "Bandung, 18-04-1998", "089531145678", 8021002, "Informatika", aj3, 1000000));
         dh.add(0, new DosenHonor("Hans", "Jalan Jendral Sudirman No. 32A", "Bandung, 18-02-1991", "089531145008", 8016002, "Informatika", aj3, 1000000));
     }
-
-
 }
