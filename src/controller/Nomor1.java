@@ -2,7 +2,6 @@ package controller;
 
 import model.classes.User;
 import view.View1;
-
 import java.util.List;
 
 public class Nomor1 {
@@ -21,5 +20,4 @@ public class Nomor1 {
             System.out.println("User dengan nama " + nama + " tidak ditemukan.");
         }
     }
-
 }
