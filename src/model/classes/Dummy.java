@@ -4,24 +4,30 @@ import model.enums.Status;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Dummy {
+    ArrayList<MataKuliah> mataKuliah = new ArrayList<>();
     ArrayList<MataKuliah> sem1 = new ArrayList<>();
     ArrayList<MataKuliah> sem3 = new ArrayList<>();
     ArrayList<MataKuliah> sem5 = new ArrayList<>();
     ArrayList<MatkulPilihan> mp = new ArrayList<>();
+    ArrayList<MatkulAmbil> ambil = new ArrayList<>();
     ArrayList<MatkulAmbil> a1 = new ArrayList<>();
     ArrayList<MatkulAmbil> a2 = new ArrayList<>();
+    ArrayList<MatkulAmbil> a3 = new ArrayList<>();
     ArrayList<MatkulAjar> aj1 = new ArrayList<>();
     ArrayList<MatkulAjar> aj2 = new ArrayList<>();
     ArrayList<MatkulAjar> aj3 = new ArrayList<>();
+    ArrayList<MatkulAjar> aj4 = new ArrayList<>();
     ArrayList<Presensi> pr1 = new ArrayList<>();
     ArrayList<Presensi> pr2 = new ArrayList<>();
-    ArrayList<PresensiStaff> prs = new ArrayList<>();
+    ArrayList<PresensiStaff> prs1 = new ArrayList<>();
+    ArrayList<PresensiStaff> prs2 = new ArrayList<>();
     List<User> users = new ArrayList<>();
+    List<Mahasiswa> mhs = new ArrayList<>();
+    List<Staff> staff = new ArrayList<>();
+    List<Dosen> dosen = new ArrayList<>();
 
     static List<MahasiswaSarjana> ms = new ArrayList<>();
     static List<MahasiswaMagister> mm = new ArrayList<>();
@@ -30,91 +36,64 @@ public class Dummy {
     static List<DosenTetap> dt = new ArrayList<>();
     static List<DosenHonor> dh = new ArrayList<>();
 
-    public ArrayList<MataKuliah> getSem1() {
-        return sem1;
-    }
-
-    public ArrayList<MataKuliah> getSem3() {
-        return sem3;
-    }
-
-    public ArrayList<MataKuliah> getSem5() {
-        return sem5;
-    }
-
-    public ArrayList<MatkulPilihan> getMp() {
-        return mp;
-    }
-
-    public ArrayList<Presensi> getPr1() {
-        return pr1;
-    }
-
-    public ArrayList<Presensi> getPr2() {
-        return pr2;
-    }
-
-    public ArrayList<PresensiStaff> getPrs() {
-        return prs;
-    }
-
-    public ArrayList<MatkulAmbil> getA1() {
-        return a1;
-    }
-
-    public ArrayList<MatkulAmbil> getA2() {
-        return a2;
-    }
-
-    public List<MahasiswaSarjana> getMs() {
-        return ms;
-    }
-
-    public List<MahasiswaMagister> getMm() {
-        return mm;
-    }
-
-    public List<MahasiswaDoktor> getMd() {
-        return md;
-    }
-
-    public List<Karyawan> getK() {
-        return k;
-    }
-
-    public ArrayList<MatkulAjar> getAj1() {
-        return aj1;
-    }
-
-    public ArrayList<MatkulAjar> getAj2() {
-        return aj2;
-    }
-
-    public ArrayList<MatkulAjar> getAj3() {
-        return aj3;
-    }
-
-    public List<DosenTetap> getDt() {
-        return dt;
-    }
-
-    public List<DosenHonor> getDh() {
-        return dh;
-    }
-
-    public List<User> getUsers() {
-        return users;
+    public List<Mahasiswa> getMhs() {
+        return mhs;
     }
 
     // User
     public List<User> createDummyUsers() {
-        users.addAll(ms);
-        users.addAll(mm);
-        users.addAll(md);
-        users.addAll(k);
-        users.addAll(dh);
-        users.addAll(dt);
+        createDummyMhs();
+        createDummyStaff();
+        users.addAll(mhs);
+        users.addAll(staff);
         return users;
+    }
+
+    public List<Mahasiswa> createDummyMhs() {
+        for (Mahasiswa mahasiswa : ms) {
+            if (!mhs.contains(mahasiswa)) {
+                mhs.add(mahasiswa);
+            }
+        }
+        for (Mahasiswa mahasiswa : mm) {
+            if (!mhs.contains(mahasiswa)) {
+                mhs.add(mahasiswa);
+            }
+        }
+        for (Mahasiswa mahasiswa : md) {
+            if (!mhs.contains(mahasiswa)) {
+                mhs.add(mahasiswa);
+            }
+        }
+        return mhs;
+    }
+
+
+    public List<Staff> createDummyStaff() {
+        createDummyDosen();
+        staff.addAll(k);
+        staff.addAll(dosen);
+        return staff;
+    }
+
+    public List<Dosen> createDummyDosen() {
+        dosen.addAll(dt);
+        dosen.addAll(dh);
+        return dosen;
+    }
+
+    public ArrayList<MataKuliah> createDummyMataKuliah() {
+        mataKuliah.addAll(sem1);
+        mataKuliah.addAll(sem3);
+        mataKuliah.addAll(sem5);
+        mataKuliah.addAll(mp);
+        return mataKuliah;
+    }
+
+    public ArrayList<MatkulAmbil> createDummyMatkulAmbil() {
+        ambil.addAll(a1);
+        ambil.addAll(a2);
+        return ambil;
     }
 
     public Dummy() throws ParseException {
@@ -138,45 +117,63 @@ public class Dummy {
         mp.add(new MatkulPilihan("IF-904", 2, "Game Design", 10));
 
         // Tanggal, untuk presensi
-        String d1 = "2024-10-10";
-        String d2 = "2024-10-17";
-        String d3 = "2024-10-24";
+        String[] dates = {
+                "2024-10-01", "2024-10-02", "2024-10-03", "2024-10-04",
+                "2024-10-05", "2024-10-07", "2024-10-08", "2024-10-09",
+                "2024-10-10", "2024-10-11", "2024-10-12", "2024-10-14",
+                "2024-10-15", "2024-10-16", "2024-10-17", "2024-10-18",
+                "2024-10-19", "2024-10-21", "2024-10-22", "2024-10-23",
+                "2024-10-24", "2024-10-25"
+        };
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        Date date1 = formatter.parse(d1);
-        Date date2 = formatter.parse(d2);
-        Date date3 = formatter.parse(d3);
+        for (int i = 0; i < dates.length; i++) {
+            Date date = formatter.parse(dates[i]);
 
-        // Presensi mahasiswa
-        pr1.add(new Presensi(date1, Status.HADIR));
-        pr1.add(new Presensi(date2, Status.HADIR));
-        pr1.add(new Presensi(date3, Status.HADIR));
-
-        pr2.add(new Presensi(date1, Status.HADIR));
-        pr2.add(new Presensi(date2, Status.ALPHA));
-        pr2.add(new Presensi(date3, Status.HADIR));
-
-        prs.add(new PresensiStaff(date1, Status.HADIR, "09.00.05"));
-        prs.add(new PresensiStaff(date2, Status.HADIR, "09.01.05"));
-        prs.add(new PresensiStaff(date3, Status.HADIR, "09.00.25"));
+            // Presensi mahasiswa untuk pr1 dan pr2
+            if (i % 3 == 0) {
+                pr1.add(new Presensi(date, Status.HADIR));
+                pr2.add(new Presensi(date, Status.HADIR));
+                prs1.add(new PresensiStaff(date, Status.HADIR, "09.01.05"));
+                prs2.add(new PresensiStaff(date, Status.HADIR, "09.02.02"));
+            } else if (i % 3 == 1) {
+                pr1.add(new Presensi(date, Status.HADIR));
+                pr2.add(new Presensi(date, Status.HADIR));
+                prs1.add(new PresensiStaff(date, Status.HADIR, "09.00.55"));
+                prs2.add(new PresensiStaff(date, Status.HADIR, "09.01.09"));
+            } else {
+                pr1.add(new Presensi(date, Status.ALPHA));
+                pr2.add(new Presensi(date, Status.HADIR));
+                prs1.add(new PresensiStaff(date, Status.HADIR, "08.58.05"));
+                prs2.add(new PresensiStaff(date, Status.ALPHA, "09.01.05"));
+            }
+        }
 
         // List ambil matkul
         a1.add(new MatkulAmbil(sem3.get(0), pr1, 80, 75, 85));
         a1.add(new MatkulAmbil(sem3.get(1), pr1, 78, 80, 83));
+        a1.add(new MatkulAmbil(sem3.get(2), pr1, 60, 85, 90));
         a1.add(new MatkulAmbil(sem5.get(1), pr1, 90, 85, 87));
         a1.add(new MatkulAmbil(mp.get(0), pr1, 78, 76, 80));
         a1.add(new MatkulAmbil(mp.get(1), pr1, 78, 76, 80));
 
-        a2.add(new MatkulAmbil(sem1.get(0), pr1, 60, 56, 65));
+        a2.add(new MatkulAmbil(sem1.get(0), pr1, 60, 20, 65));
         a2.add(new MatkulAmbil(sem1.get(1), pr2, 78, 68, 54));
         a2.add(new MatkulAmbil(sem3.get(1), pr1, 50, 62, 43));
         a2.add(new MatkulAmbil(sem3.get(2), pr1, 50, 62, 43));
+
+        a3.add(new MatkulAmbil(sem1.get(0), pr1, 82, 85, 75));
+        a3.add(new MatkulAmbil(sem1.get(1), pr1, 78, 85, 72));
+        a3.add(new MatkulAmbil(sem1.get(2), pr2, 90, 85, 95));
 
         // Mahasiswa
         ms.add(new MahasiswaSarjana("Kezia", "Jalan Dadali No. 1", "Bandung, 22-12-2004", "012345678", 1123001, "Informatika", a1));
         ms.add(new MahasiswaSarjana("Steven", "Gang Maksudi No. 10", "Bandung, 14-03-2004", "012345679", 1123002, "Informatika", a1));
         ms.add(new MahasiswaSarjana("Jaysen", "Jalan TKI I No. 92", "Bandung, 21-09-2005", "012345680", 1123006, "Informatika", a2));
         ms.add(new MahasiswaSarjana("Alek", "Jalan TKI V No. 1", "Bandung, 16-02-2004", "012345080", 1123038, "Informatika", a2));
+        ms.add(new MahasiswaSarjana("Shinta", "Jalan Cibadak No. 43", "Bandung, 25-12-2005", "012343632", 1124001, "Informatika", a3));
+        ms.add(new MahasiswaSarjana("Marvel", "Jalan Rahayu No. 51", "Bandung, 23-07-2006", "012345089", 1124010, "Informatika", a3));
 
         mm.add(new MahasiswaMagister("Joel", "Jalan Banjaran No. 31", "Bandung, 02-03-2005", "098765432", 1123003, "Informatika", a1, "Dampak Penggunaan Generative AI Terhadap Keterampilan Mahasiswa"));
         mm.add(new MahasiswaMagister("Hans", "Jalan Ujung Berung No. 20", "Bandung, 15-01-2005", "098765412", 1123026, "Informatika", a1, "Dampak Penggunaan AI di Industri Digital"));
@@ -185,24 +182,31 @@ public class Dummy {
         md.add(new MahasiswaDoktor("Aloy", "Jalan Cicendo No. 4", "Bandung, 05-01-2005", "0831967478", 1123011, "Informatika", "Hubungan Penerapan AI dengan Penanganan Pasien di Rumah Sakit Indonesia", 90, 93, 95));
 
         // Karyawan
-        k.add(new Karyawan("Tono", "Jalan Kopo No. 100", "Bandung, 01-01-1980", "03933392471", 9015001, 4000000, prs));
-        k.add(new Karyawan("Toni", "Jalan Cihanjuang No. 50", "Subang, 07-03-1986", "03952492471", 9015002, 4300000, prs));
+        k.add(new Karyawan("Tono", "Jalan Kopo No. 100", "Bandung, 01-01-1980", "03933392471", 9015001, 450000, prs1));
+        k.add(new Karyawan("Toni", "Jalan Cihanjuang No. 50", "Subang, 07-03-1986", "03952492471", 9015002, 430000, prs2));
 
         // Matkul yang diajar dosen
-        aj1.add(new MatkulAjar(sem1.get(1), prs));
-        aj1.add(new MatkulAjar(sem3.get(1), prs));
-        aj1.add(new MatkulAjar(sem3.get(2), prs));
+        aj1.add(new MatkulAjar(sem1.get(1), prs1));
+        aj1.add(new MatkulAjar(sem3.get(1), prs1));
+        aj1.add(new MatkulAjar(sem3.get(2), prs1));
 
-        aj2.add(new MatkulAjar(sem1.get(0), prs));
-        aj2.add(new MatkulAjar(sem5.get(0), prs));
+        aj2.add(new MatkulAjar(sem1.get(0), prs2));
+        aj2.add(new MatkulAjar(sem5.get(0), prs1));
+        aj2.add(new MatkulAjar(sem5.get(1), prs2));
 
-        aj3.add(new MatkulAjar(sem3.get(0), prs));
+        aj3.add(new MatkulAjar(sem3.get(0), prs1));
+        aj3.add(new MatkulAjar(mp.get(0), prs2));
+        aj3.add(new MatkulAjar(mp.get(1), prs2));
+
+        aj4.add(new MatkulAjar(sem3.get(0), prs1));
+        aj4.add(new MatkulAjar(mp.get(0), prs1));
+        aj4.add(new MatkulAjar(mp.get(1), prs2));
 
         // Dosen
-        dt.add(0, new DosenTetap("Inge", "Jalan Pabaki No. 30", "Bandung, 21-03-1962", "0819234567", 8085001, "Informatika", aj1, 8500000));
-        dt.add(1, new DosenTetap("Ken", "Jalan Dipatiukur No. 20", "Bandung, 20-05-1980", "0819234756", 8012001, "Informatika", aj2, 8300000));
+        dt.add(0, new DosenTetap("Inge", "Jalan Pabaki No. 30", "Bandung, 21-03-1962", "0819234567", 8085001, "Informatika", aj1, 5500000));
+        dt.add(1, new DosenTetap("Ken", "Jalan Dipatiukur No. 20", "Bandung, 20-05-1980", "0819234756", 8012001, "Informatika", aj2, 5000000));
 
-        dh.add(0, new DosenHonor("Dion", "Jalan TKI II No. 3A", "Bandung, 18-04-1998", "089531145678", 8021002, "Informatika", aj3, 1000000));
-        dh.add(0, new DosenHonor("Hans", "Jalan Jendral Sudirman No. 32A", "Bandung, 18-02-1991", "089531145008", 8016002, "Informatika", aj3, 1000000));
+        dh.add(0, new DosenHonor("Dion", "Jalan TKI II No. 3A", "Bandung, 18-04-1998", "089531145678", 8021002, "Informatika", aj3, 500000));
+        dh.add(0, new DosenHonor("Hans", "Jalan Jendral Sudirman No. 32A", "Bandung, 18-02-1991", "089531145008", 8016002, "Informatika", aj4, 500000));
     }
 }

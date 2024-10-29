@@ -9,7 +9,7 @@ import java.util.List;
 public class Nomor3 {
     public static void printAllAvg(String kodeMk, List<Mahasiswa> mhs, ArrayList<MatkulAmbil> matkul) {
         View3 view = new View3();
-        boolean foundMK = false, sudahDipanggil = false;
+        boolean foundMK = false;
         for (Mahasiswa m : mhs) {
             double nilaiAkhir = 0;
             if (m instanceof MahasiswaSarjana) {
