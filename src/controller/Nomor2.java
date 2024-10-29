@@ -13,35 +13,41 @@ public class Nomor2 {
             if (m.getNim() == nim) {
                 foundNim = true;
                 double nilaiAkhir = 0;
-                if (m instanceof MahasiswaDoktor) {
-                    double nilai1 = ((MahasiswaDoktor) mhs).getNilaiSidang1();
-                    double nilai2 = ((MahasiswaDoktor) mhs).getNilaiSidang2();
-                    double nilai3 = ((MahasiswaDoktor) mhs).getNilaiSidang3();
-                    nilaiAkhir = (nilai1 + nilai2 + nilai3) / 3;
-                    view.displayNomor2(m.getNim(), "Nilai akhir sidang", nilaiAkhir);
-                    break;
-                } else if (m instanceof MahasiswaSarjana || m instanceof MahasiswaMagister) {
-                    for (MatkulAmbil mk : matkul) {
+                if (m instanceof MahasiswaSarjana) {
+                    for (MatkulAmbil mk : ((MahasiswaSarjana) m).getAmbil()) {
                         if (mk.getAmbil().getKode().equalsIgnoreCase(kodeMk)) {
                             foundMK = true;
-                            double nilai1 = mk.getN1();
-                            double nilai2 = mk.getN2();
-                            double nilai3 = mk.getN3();
-                            nilaiAkhir = (nilai1 + nilai2 + nilai3) / 3;
+                            nilaiAkhir = hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
                             view.displayNomor2(m.getNim(), mk.getAmbil().getNama(), nilaiAkhir);
                             break;
                         }
                     }
+                    break;
                 }
-                break;
+                if (m instanceof MahasiswaMagister) {
+                    for (MatkulAmbil mk : ((MahasiswaMagister) m).getAmbil()) {
+                        if (mk.getAmbil().getKode().equalsIgnoreCase(kodeMk)) {
+                            foundMK = true;
+                            nilaiAkhir = hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
+                            view.displayNomor2(m.getNim(), mk.getAmbil().getNama(), nilaiAkhir);
+                            break;
+                        }
+                    }
+                    break;
+                }
+                if (m instanceof MahasiswaDoktor) {
+                    nilaiAkhir = hitungNA(((MahasiswaDoktor) m).getNilaiSidang1(), ((MahasiswaDoktor) mhs).getNilaiSidang2(), ((MahasiswaDoktor) mhs).getNilaiSidang3());
+                    view.displayNomor2(m.getNim(), "Nilai akhir sidang", nilaiAkhir);
+                    break;
+                }
             }
         }
+        if(!foundNim || !foundMK) {
+            view.displayNomor2(nim, "Input " + kodeMk + " Tidak Ditemukan", 404);
+        }
+    }
 
-        if (!foundNim) {
-            view.displayNomor2(nim, "Tidak ditemukan", 404);
-        }
-        if (!foundMK) {
-            view.displayNomor2(nim, kodeMk + " tidak ditemukan", 404);
-        }
+    public static double hitungNA(double n1, double n2, double n3) {
+        return (n1 + n2 + n3) / 3;
     }
 }
