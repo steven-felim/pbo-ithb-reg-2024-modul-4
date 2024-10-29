@@ -17,7 +17,7 @@ public class Nomor2 {
                     for (MatkulAmbil mk : ((MahasiswaSarjana) m).getAmbil()) {
                         if (mk.getAmbil().getKode().equalsIgnoreCase(kodeMk)) {
                             foundMK = true;
-                            nilaiAkhir = hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
+                            nilaiAkhir = HitungNA.hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
                             view.displayNomor2(m.getNim(), mk.getAmbil().getNama(), nilaiAkhir);
                             break;
                         }
@@ -28,7 +28,7 @@ public class Nomor2 {
                     for (MatkulAmbil mk : ((MahasiswaMagister) m).getAmbil()) {
                         if (mk.getAmbil().getKode().equalsIgnoreCase(kodeMk)) {
                             foundMK = true;
-                            nilaiAkhir = hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
+                            nilaiAkhir = HitungNA.hitungNA(mk.getN1(), mk.getN2(), mk.getN3());
                             view.displayNomor2(m.getNim(), mk.getAmbil().getNama(), nilaiAkhir);
                             break;
                         }
@@ -36,7 +36,7 @@ public class Nomor2 {
                     break;
                 }
                 if (m instanceof MahasiswaDoktor) {
-                    nilaiAkhir = hitungNA(((MahasiswaDoktor) m).getNilaiSidang1(), ((MahasiswaDoktor) mhs).getNilaiSidang2(), ((MahasiswaDoktor) mhs).getNilaiSidang3());
+                    nilaiAkhir = HitungNA.hitungNA(((MahasiswaDoktor) m).getNilaiSidang1(), ((MahasiswaDoktor) mhs).getNilaiSidang2(), ((MahasiswaDoktor) mhs).getNilaiSidang3());
                     view.displayNomor2(m.getNim(), "Nilai akhir sidang", nilaiAkhir);
                     break;
                 }
@@ -45,9 +45,5 @@ public class Nomor2 {
         if(!foundNim || !foundMK) {
             view.displayNomor2(nim, "Input " + kodeMk + " Tidak Ditemukan", 404);
         }
-    }
-
-    public static double hitungNA(double n1, double n2, double n3) {
-        return (n1 + n2 + n3) / 3;
     }
 }
