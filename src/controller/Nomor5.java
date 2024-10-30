@@ -3,12 +3,11 @@ package controller;
 import model.classes.*;
 import model.enums.Status;
 import view.View5;
-
 import javax.swing.*;
 import java.util.List;
 
 public class Nomor5 {
-    public static void print(int nim, List<Mahasiswa> mhs) {
+    public static void printMatkuAmbil(int nim, List<Mahasiswa> mhs) {
         View5 view = new View5();
         boolean foundNIM = false;
         for (Mahasiswa m : mhs) {
@@ -41,6 +40,9 @@ public class Nomor5 {
                         }
                     }
                     break;
+                }
+                if (m instanceof MahasiswaDoktor) {
+                    view.displayMhsDoktor(m.getNim(), m.getNama());
                 }
             }
         }

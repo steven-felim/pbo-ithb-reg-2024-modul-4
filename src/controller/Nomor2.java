@@ -35,7 +35,11 @@ public class Nomor2 {
                     break;
                 }
                 if (m instanceof MahasiswaDoktor) {
-                    nilaiAkhir = HitungNA.hitungNA(((MahasiswaDoktor) m).getNilaiSidang1(), ((MahasiswaDoktor) mhs).getNilaiSidang2(), ((MahasiswaDoktor) mhs).getNilaiSidang3());
+                    foundMK = true;
+                    double n1 = ((MahasiswaDoktor) m).getNilaiSidang1();
+                    double n2 = ((MahasiswaDoktor) m).getNilaiSidang2();
+                    double n3 = ((MahasiswaDoktor) m).getNilaiSidang3();
+                    nilaiAkhir = HitungNA.hitungNA(n1, n2, n3);
                     view.displayNomor2(m.getNim(), "Nilai akhir sidang", nilaiAkhir);
                     break;
                 }
