@@ -1,5 +1,4 @@
-package model.classes;
-
+import model.classes.*;
 import model.enums.Status;
 
 import java.text.ParseException;
@@ -16,6 +15,7 @@ public class Dummy {
     ArrayList<MatkulAmbil> a1 = new ArrayList<>();
     ArrayList<MatkulAmbil> a2 = new ArrayList<>();
     ArrayList<MatkulAmbil> a3 = new ArrayList<>();
+    ArrayList<MatkulAmbil> a4 = new ArrayList<>();
     ArrayList<MatkulAjar> aj1 = new ArrayList<>();
     ArrayList<MatkulAjar> aj2 = new ArrayList<>();
     ArrayList<MatkulAjar> aj3 = new ArrayList<>();
@@ -35,26 +35,6 @@ public class Dummy {
     static List<Karyawan> k = new ArrayList<>();
     static List<DosenTetap> dt = new ArrayList<>();
     static List<DosenHonor> dh = new ArrayList<>();
-
-    public List<Mahasiswa> getMhs() {
-        return mhs;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public List<Dosen> getDosen() {
-        return dosen;
-    }
-
-    public ArrayList<MataKuliah> getMataKuliah() {
-        return mataKuliah;
-    }
-
-    public List<Staff> getStaff() {
-        return staff;
-    }
 
     // User
     public List<User> createDummyUsers() {
@@ -113,25 +93,15 @@ public class Dummy {
     }
 
     public Dummy() throws ParseException {
-        // Mata kuliah semester 1
-        sem1.add(new MataKuliah("IF-1P3", 4, "Desain Web"));
-        sem1.add(new MataKuliah("IF-104", 4, "Algoritma dan Pemrogramamn"));
-        sem1.add(new MataKuliah("IF-105", 3, "Pengantar Teknologi Informasi"));
+        initializePresensi();
+        initializeMataKuliah();
+        initializeMatkulAmbil();
+        initializeMatkulAjar();
+        initializeMahasiswa();
+        initializeStaff();
+        }
 
-        // Mata kuliah semester 3
-        sem3.add(new MataKuliah("IF-301", 3, "Pemrograman Berorientasi Objek"));
-        sem3.add(new MataKuliah("IF-302", 4, "Basis Data"));
-        sem3.add(new MataKuliah("IF-303", 3, "Sistem Berkas"));
-
-        // Mata kuliah semester 5
-        sem5.add(new MataKuliah("IF-502", 2, "Interaksi Manusia dan Komputer"));
-        sem5.add(new MataKuliah("IF-504", 3, "Kecerdasan Buatan"));
-
-        // Mata kuliah pilihan
-        mp.add(new MatkulPilihan("IF-900", 2, "Kapita Selekta", 10));
-        mp.add(new MatkulPilihan("IF-903", 3, "Game Development", 10));
-        mp.add(new MatkulPilihan("IF-904", 2, "Game Design", 10));
-
+    private void initializePresensi() throws ParseException {
         // Tanggal, untuk presensi
         String[] dates = {
                 "2024-10-01", "2024-10-02", "2024-10-03", "2024-10-04",
@@ -170,7 +140,49 @@ public class Dummy {
                 prs2.add(new PresensiStaff(date, Status.HADIR, "09.01.05"));
             }
         }
+    }
 
+    private void initializeMataKuliah() {
+        // Mata kuliah semester 1
+        sem1.add(new MataKuliah("IF-1P3", 4, "Desain Web"));
+        sem1.add(new MataKuliah("IF-104", 4, "Algoritma dan Pemrograman"));
+        sem1.add(new MataKuliah("IF-105", 3, "Pengantar Teknologi Informasi"));
+
+        // Mata kuliah semester 3
+        sem3.add(new MataKuliah("IF-301", 3, "Pemrograman Berorientasi Objek"));
+        sem3.add(new MataKuliah("IF-302", 4, "Basis Data"));
+        sem3.add(new MataKuliah("IF-303", 3, "Sistem Berkas"));
+
+        // Mata kuliah semester 5
+        sem5.add(new MataKuliah("IF-502", 2, "Interaksi Manusia dan Komputer"));
+        sem5.add(new MataKuliah("IF-504", 3, "Kecerdasan Buatan"));
+
+        // Mata kuliah pilihan
+        mp.add(new MatkulPilihan("IF-900", 2, "Kapita Selekta", 10));
+        mp.add(new MatkulPilihan("IF-903", 3, "Game Development", 10));
+        mp.add(new MatkulPilihan("IF-904", 2, "Game Design", 10));
+    }
+
+    private void initializeMatkulAjar() {
+        // Matkul yang diajar dosen
+        aj1.add(new MatkulAjar(sem1.get(1), prs1));
+        aj1.add(new MatkulAjar(sem3.get(1), prs1));
+        aj1.add(new MatkulAjar(sem3.get(2), prs1));
+
+        aj2.add(new MatkulAjar(sem1.get(0), prs2));
+        aj2.add(new MatkulAjar(sem5.get(0), prs1));
+        aj2.add(new MatkulAjar(sem5.get(1), prs2));
+
+        aj3.add(new MatkulAjar(sem3.get(0), prs1));
+        aj3.add(new MatkulAjar(mp.get(0), prs2));
+        aj3.add(new MatkulAjar(mp.get(1), prs2));
+
+        aj4.add(new MatkulAjar(sem3.get(0), prs1));
+        aj4.add(new MatkulAjar(mp.get(1), prs1));
+        aj4.add(new MatkulAjar(mp.get(2), prs2));
+    }
+
+    private void initializeMatkulAmbil() {
         // List ambil matkul
         a1.add(new MatkulAmbil(sem3.get(0), pr1, 80, 75, 85));
         a1.add(new MatkulAmbil(sem3.get(1), pr2, 78, 80, 83));
@@ -188,6 +200,12 @@ public class Dummy {
         a3.add(new MatkulAmbil(sem1.get(1), pr1, 78, 85, 72));
         a3.add(new MatkulAmbil(sem1.get(2), pr2, 90, 85, 95));
 
+        a4.add(new MatkulAmbil(mp.get(0), pr1, 82, 85, 75));
+        a4.add(new MatkulAmbil(mp.get(1), pr2, 78, 89, 77));
+        a4.add(new MatkulAmbil(mp.get(2), pr2, 95, 82, 79));
+    }
+
+    private void initializeMahasiswa() {
         // Mahasiswa
         ms.add(new MahasiswaSarjana("Kezia", "Jalan Dadali No. 1", "Bandung, 22-12-2004", "012345678", 1123001, "Informatika", a1));
         ms.add(new MahasiswaSarjana("Steven", "Gang Maksudi No. 10", "Bandung, 14-03-2004", "012345679", 1123002, "Informatika", a1));
@@ -196,32 +214,18 @@ public class Dummy {
         ms.add(new MahasiswaSarjana("Shinta", "Jalan Cibadak No. 43", "Bandung, 25-12-2005", "012343632", 1124001, "Informatika", a3));
         ms.add(new MahasiswaSarjana("Marvel", "Jalan Rahayu No. 51", "Bandung, 23-07-2006", "012345089", 1124010, "Informatika", a3));
 
-        mm.add(new MahasiswaMagister("Joel", "Jalan Banjaran No. 31", "Bandung, 02-03-2005", "098765432", 1123003, "Informatika", a1, "Dampak Penggunaan Generative AI Terhadap Keterampilan Mahasiswa"));
-        mm.add(new MahasiswaMagister("Hans", "Jalan Ujung Berung No. 20", "Bandung, 15-01-2005", "098765412", 1123026, "Informatika", a1, "Dampak Penggunaan AI di Industri Digital"));
+        mm.add(new MahasiswaMagister("Joel", "Jalan Banjaran No. 31", "Bandung, 02-03-2005", "098765432", 1123003, "Informatika", a4, "Dampak Penggunaan Generative AI Terhadap Keterampilan Mahasiswa"));
+        mm.add(new MahasiswaMagister("Hans", "Jalan Ujung Berung No. 20", "Bandung, 15-01-2005", "098765412", 1123026, "Informatika", a4, "Dampak Penggunaan AI di Industri Digital"));
+        mm.add(new MahasiswaMagister("Felix", "Jalan Babakan Tarogong No. 93", "Bandung, 17-09-2004", "081345672", 1123042, "Informatika", a4, "Pengaruh Sout hehe Terhadap IP Mahasiswa"));
 
         md.add(new MahasiswaDoktor("Jerryco", "Jalan Rancamanyar No. 12", "Bandung, 02-03-2005", "0831265478", 1123009, "Informatika", "Penerapan Machine Learning dalam Industri Gaming", 90, 89, 95));
         md.add(new MahasiswaDoktor("Aloy", "Jalan Cicendo No. 4", "Bandung, 05-01-2005", "0831967478", 1123011, "Informatika", "Hubungan Penerapan AI dengan Penanganan Pasien di Rumah Sakit Indonesia", 90, 93, 95));
+    }
 
+    private void initializeStaff() {
         // Karyawan
         k.add(new Karyawan("Tono", "Jalan Kopo No. 100", "Bandung, 01-01-1980", "03933392471", 9015001, 220000, prs1));
         k.add(new Karyawan("Toni", "Jalan Cihanjuang No. 50", "Subang, 07-03-1986", "03952492471", 9015002, 200000, prs2));
-
-        // Matkul yang diajar dosen
-        aj1.add(new MatkulAjar(sem1.get(1), prs1));
-        aj1.add(new MatkulAjar(sem3.get(1), prs1));
-        aj1.add(new MatkulAjar(sem3.get(2), prs1));
-
-        aj2.add(new MatkulAjar(sem1.get(0), prs2));
-        aj2.add(new MatkulAjar(sem5.get(0), prs1));
-        aj2.add(new MatkulAjar(sem5.get(1), prs2));
-
-        aj3.add(new MatkulAjar(sem3.get(0), prs1));
-        aj3.add(new MatkulAjar(mp.get(0), prs2));
-        aj3.add(new MatkulAjar(mp.get(1), prs2));
-
-        aj4.add(new MatkulAjar(sem3.get(0), prs1));
-        aj4.add(new MatkulAjar(mp.get(0), prs1));
-        aj4.add(new MatkulAjar(mp.get(1), prs2));
 
         // Dosen
         dt.add(0, new DosenTetap("Inge", "Jalan Pabaki No. 30", "Bandung, 21-03-1962", "0819234567", 9011001, "Informatika", aj1, 5500000));

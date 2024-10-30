@@ -1,5 +1,3 @@
-package view;
-
 import model.classes.*;
 
 import java.util.ArrayList;
