@@ -1,4 +1,6 @@
 import controller.*;
+import main.ContohInput;
+import main.Dummy;
 import javax.swing.*;
 import java.text.ParseException;
 

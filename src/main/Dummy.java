@@ -1,3 +1,5 @@
+package main;
+
 import model.classes.*;
 import model.enums.Status;
 
@@ -99,7 +101,7 @@ public class Dummy {
         initializeMatkulAjar();
         initializeMahasiswa();
         initializeStaff();
-        }
+    }
 
     private void initializePresensi() throws ParseException {
         // Tanggal, untuk presensi

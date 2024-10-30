@@ -1,3 +1,5 @@
+package main;
+
 import model.classes.*;
 
 import java.util.ArrayList;
