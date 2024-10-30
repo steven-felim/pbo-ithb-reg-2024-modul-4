@@ -40,6 +40,22 @@ public class Dummy {
         return mhs;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Dosen> getDosen() {
+        return dosen;
+    }
+
+    public ArrayList<MataKuliah> getMataKuliah() {
+        return mataKuliah;
+    }
+
+    public List<Staff> getStaff() {
+        return staff;
+    }
+
     // User
     public List<User> createDummyUsers() {
         createDummyMhs();
@@ -132,35 +148,40 @@ public class Dummy {
             Date date = formatter.parse(dates[i]);
 
             // Presensi mahasiswa untuk pr1 dan pr2
-            if (i % 3 == 0) {
-                pr1.add(new Presensi(date, Status.HADIR));
-                pr2.add(new Presensi(date, Status.HADIR));
-                prs1.add(new PresensiStaff(date, Status.HADIR, "09.01.05"));
-                prs2.add(new PresensiStaff(date, Status.HADIR, "09.02.02"));
-            } else if (i % 3 == 1) {
-                pr1.add(new Presensi(date, Status.HADIR));
-                pr2.add(new Presensi(date, Status.HADIR));
-                prs1.add(new PresensiStaff(date, Status.HADIR, "09.00.55"));
-                prs2.add(new PresensiStaff(date, Status.HADIR, "09.01.09"));
-            } else {
+            if (i % 13 == 0) {
                 pr1.add(new Presensi(date, Status.ALPHA));
                 pr2.add(new Presensi(date, Status.HADIR));
+                prs1.add(new PresensiStaff(date, Status.ALPHA, "-"));
+                prs2.add(new PresensiStaff(date, Status.HADIR, "09.02.02"));
+            } else if (i % 13 == 1) {
+                pr1.add(new Presensi(date, Status.HADIR));
+                pr2.add(new Presensi(date, Status.ALPHA));
+                prs1.add(new PresensiStaff(date, Status.HADIR, "09.00.55"));
+                prs2.add(new PresensiStaff(date, Status.ALPHA, "-"));
+            } else if (i % 17 == 1) {
+                pr1.add(new Presensi(date, Status.ALPHA));
+                pr2.add(new Presensi(date, Status.HADIR));
+                prs1.add(new PresensiStaff(date, Status.HADIR, "09.00.55"));
+                prs2.add(new PresensiStaff(date, Status.ALPHA, "-"));
+            } else {
+                pr1.add(new Presensi(date, Status.HADIR));
+                pr2.add(new Presensi(date, Status.HADIR));
                 prs1.add(new PresensiStaff(date, Status.HADIR, "08.58.05"));
-                prs2.add(new PresensiStaff(date, Status.ALPHA, "09.01.05"));
+                prs2.add(new PresensiStaff(date, Status.HADIR, "09.01.05"));
             }
         }
 
         // List ambil matkul
         a1.add(new MatkulAmbil(sem3.get(0), pr1, 80, 75, 85));
-        a1.add(new MatkulAmbil(sem3.get(1), pr1, 78, 80, 83));
+        a1.add(new MatkulAmbil(sem3.get(1), pr2, 78, 80, 83));
         a1.add(new MatkulAmbil(sem3.get(2), pr1, 60, 85, 90));
-        a1.add(new MatkulAmbil(sem5.get(1), pr1, 90, 85, 87));
+        a1.add(new MatkulAmbil(sem5.get(1), pr2, 90, 85, 87));
         a1.add(new MatkulAmbil(mp.get(0), pr1, 78, 76, 80));
-        a1.add(new MatkulAmbil(mp.get(1), pr1, 78, 76, 80));
+        a1.add(new MatkulAmbil(mp.get(1), pr2, 78, 76, 80));
 
         a2.add(new MatkulAmbil(sem1.get(0), pr1, 60, 20, 65));
         a2.add(new MatkulAmbil(sem1.get(1), pr2, 78, 68, 54));
-        a2.add(new MatkulAmbil(sem3.get(1), pr1, 50, 62, 43));
+        a2.add(new MatkulAmbil(sem3.get(1), pr2, 50, 62, 43));
         a2.add(new MatkulAmbil(sem3.get(2), pr1, 50, 62, 43));
 
         a3.add(new MatkulAmbil(sem1.get(0), pr1, 82, 85, 75));
@@ -182,8 +203,8 @@ public class Dummy {
         md.add(new MahasiswaDoktor("Aloy", "Jalan Cicendo No. 4", "Bandung, 05-01-2005", "0831967478", 1123011, "Informatika", "Hubungan Penerapan AI dengan Penanganan Pasien di Rumah Sakit Indonesia", 90, 93, 95));
 
         // Karyawan
-        k.add(new Karyawan("Tono", "Jalan Kopo No. 100", "Bandung, 01-01-1980", "03933392471", 9015001, 450000, prs1));
-        k.add(new Karyawan("Toni", "Jalan Cihanjuang No. 50", "Subang, 07-03-1986", "03952492471", 9015002, 430000, prs2));
+        k.add(new Karyawan("Tono", "Jalan Kopo No. 100", "Bandung, 01-01-1980", "03933392471", 9015001, 220000, prs1));
+        k.add(new Karyawan("Toni", "Jalan Cihanjuang No. 50", "Subang, 07-03-1986", "03952492471", 9015002, 200000, prs2));
 
         // Matkul yang diajar dosen
         aj1.add(new MatkulAjar(sem1.get(1), prs1));
@@ -203,10 +224,10 @@ public class Dummy {
         aj4.add(new MatkulAjar(mp.get(1), prs2));
 
         // Dosen
-        dt.add(0, new DosenTetap("Inge", "Jalan Pabaki No. 30", "Bandung, 21-03-1962", "0819234567", 8085001, "Informatika", aj1, 5500000));
-        dt.add(1, new DosenTetap("Ken", "Jalan Dipatiukur No. 20", "Bandung, 20-05-1980", "0819234756", 8012001, "Informatika", aj2, 5000000));
+        dt.add(0, new DosenTetap("Inge", "Jalan Pabaki No. 30", "Bandung, 21-03-1962", "0819234567", 9011001, "Informatika", aj1, 5500000));
+        dt.add(1, new DosenTetap("Ken", "Jalan Dipatiukur No. 20", "Bandung, 20-05-1980", "0819234756", 9011002, "Informatika", aj2, 5000000));
 
-        dh.add(0, new DosenHonor("Dion", "Jalan TKI II No. 3A", "Bandung, 18-04-1998", "089531145678", 8021002, "Informatika", aj3, 500000));
-        dh.add(0, new DosenHonor("Hans", "Jalan Jendral Sudirman No. 32A", "Bandung, 18-02-1991", "089531145008", 8016002, "Informatika", aj4, 500000));
+        dh.add(0, new DosenHonor("Dion", "Jalan TKI II No. 3A", "Bandung, 18-04-1998", "089531145678", 9011003, "Informatika", aj3, 100000));
+        dh.add(0, new DosenHonor("Hans", "Jalan Jendral Sudirman No. 32A", "Bandung, 18-02-1991", "089531145008", 9011004, "Informatika", aj4, 105000));
     }
 }
