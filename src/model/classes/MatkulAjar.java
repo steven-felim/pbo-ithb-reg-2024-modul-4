@@ -29,8 +29,6 @@ public class MatkulAjar {
 
     @Override
     public String toString() {
-
-        return getAjar().toString() + "\n" +
-                getPresensi().toString() + "\n";
+        return  "\n" + getAjar().toString() + "\n";
     }
 }

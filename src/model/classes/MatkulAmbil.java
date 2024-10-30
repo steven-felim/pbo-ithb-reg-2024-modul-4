@@ -57,11 +57,10 @@ public class MatkulAmbil {
 
     @Override
     public String toString() {
-        return getAmbil().toString() + "\n" +
-                getPresensi().toString() + "\n" +
+        return "\n" + getAmbil().toString() +
                 "Nilai 1 Mahasiswa   : " + getN1() + "\n" +
                 "Nilai 2 Mahasiswa   : " + getN2() + "\n" +
-                "Nilai 3 Mahasiswa   : " + getN3() + "\n";
+                "Nilai 3 Mahasiswa   : " + getN3() + "\n\n";
     }
 
 }
