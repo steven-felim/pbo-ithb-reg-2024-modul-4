@@ -2,12 +2,10 @@ package controller;
 
 import model.classes.*;
 import view.View3;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Nomor3 {
-    public static void printAllAvg(String kodeMk, List<Mahasiswa> mhs, ArrayList<MatkulAmbil> matkul) {
+    public static void printAllAvg(String kodeMk, List<Mahasiswa> mhs) {
         View3 view = new View3();
         boolean foundMK = false;
         for (Mahasiswa m : mhs) {

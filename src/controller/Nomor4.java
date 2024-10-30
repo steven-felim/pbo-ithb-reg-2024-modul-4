@@ -2,12 +2,10 @@ package controller;
 
 import model.classes.*;
 import view.View4;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Nomor4 {
-    public static void printMhsTidakLulus(String kodeMk, List<Mahasiswa> mhs, ArrayList<MatkulAmbil> matkul) {
+    public static void printMhsTidakLulus(String kodeMk, List<Mahasiswa> mhs) {
         View4 view = new View4();
         boolean foundMK = false;
         int counterTidakLulus = 0, counterTotal = 0;
