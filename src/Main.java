@@ -1,15 +1,12 @@
 import controller.*;
-import model.classes.Dummy;
-import model.classes.User;
-import view.ContohInput;
 import javax.swing.*;
 import java.text.ParseException;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
         Dummy dummy = new Dummy();
-        List<User> users = dummy.createDummyUsers();
+        int nim, nik;
+        String kode;
 
         while (true) {
             String pilih = JOptionPane.showInputDialog("""
@@ -24,41 +21,41 @@ public class Main {
                     99. Berhenti""");
             switch (pilih) {
                 case "1":
-                    ContohInput.Nama(users);
+                    ContohInput.Nama(dummy.createDummyUsers());
                     String nama = JOptionPane.showInputDialog("Masukkan nama yang dicari:");
-                    Nomor1.printUserData(nama, dummy.getUsers());
+                    Nomor1.printUserData(nama, dummy.createDummyUsers());
                     break;
                 case "2":
-                    ContohInput.NIM(dummy.getMhs());
-                    int nim = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIM:"));
-                    ContohInput.Matkul(dummy.getMataKuliah());
-                    String kode = JOptionPane.showInputDialog("Masukkan Kode Mata Kuliah:");
-                    Nomor2.printAvg(nim, kode, dummy.getMhs());
+                    ContohInput.NIM(dummy.createDummyMhs());
+                    nim = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIM:"));
+                    ContohInput.Matkul(dummy.createDummyMataKuliah());
+                    kode = JOptionPane.showInputDialog("Masukkan Kode Mata Kuliah:");
+                    Nomor2.printAvg(nim, kode, dummy.createDummyMhs());
                     break;
                 case "3":
-                    ContohInput.Matkul(dummy.getMataKuliah());
+                    ContohInput.Matkul(dummy.createDummyMataKuliah());
                     kode = JOptionPane.showInputDialog("Masukkan kode Mata Kuliah:");
-                    Nomor3.printAllAvg(kode, dummy.getMhs());
+                    Nomor3.printAllAvg(kode, dummy.createDummyMhs());
                     break;
                 case "4":
-                    ContohInput.Matkul(dummy.getMataKuliah());
+                    ContohInput.Matkul(dummy.createDummyMataKuliah());
                     kode = JOptionPane.showInputDialog("Masukkan kode Mata Kuliah:");
-                    Nomor4.printMhsTidakLulus(kode, dummy.getMhs());
+                    Nomor4.printMhsTidakLulus(kode, dummy.createDummyMhs());
                     break;
                 case "5":
-                    ContohInput.NIM(dummy.getMhs());
+                    ContohInput.NIM(dummy.createDummyMhs());
                     nim = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIM:"));
-                    Nomor5.printMatkuAmbil(nim, dummy.getMhs());
+                    Nomor5.printMatkuAmbil(nim, dummy.createDummyMhs());
                     break;
                 case "6":
-                    ContohInput.NIKD(dummy.getDosen());
-                    int nik = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIK:"));
-                    Nomor6.printJamAjar(nik, dummy.getDosen());
+                    ContohInput.NIKD(dummy.createDummyDosen());
+                    nik = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIK:"));
+                    Nomor6.printJamAjar(nik, dummy.createDummyDosen());
                     break;
                 case "7":
-                    ContohInput.NIK(dummy.getStaff());
+                    ContohInput.NIK(dummy.createDummyStaff());
                     nik = Integer.parseInt(JOptionPane.showInputDialog("Masukkan NIK:"));
-                    Nomor7.printGaji(nik, dummy.getStaff());
+                    Nomor7.printGaji(nik, dummy.createDummyStaff());
                     break;
                 case "99":
                     JOptionPane.showMessageDialog(null, "Terima Kasih");
